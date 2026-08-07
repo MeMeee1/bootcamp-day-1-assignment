@@ -1,0 +1,17 @@
+# Databricks App Configuration for Ticketing System
+# This app uses Lakebase (Databricks Postgres) as the database backend
+
+command:
+  - "uvicorn"
+  - "app:app"
+  - "--host"
+  - "0.0.0.0"
+  - "--port"
+  - "8000"
+
+env:
+  # Database connection URL from Databricks Secrets
+  # Format: postgresql://username:password@host:port/database
+  # Create the secret with: databricks secrets put-secret ticketing-system DATABASE_URL
+  - name: DATABASE_URL
+    valueFrom: "{{secrets/ticketing-system/DATABASE_URL}}"
