@@ -1,9 +1,17 @@
-command: ["streamlit", "run", "app.py"]
+# Databricks App Configuration for Ticketing System
+# This app uses Lakebase (Databricks Postgres) as the database backend
 
-# Optional: specify Python dependencies
-# (if you have a requirements.txt, it's automatically installed)
+command:
+  - "uvicorn"
+  - "app:app"
+  - "--host"
+  - "0.0.0.0"
+  - "--port"
+  - "8000"
 
-# Optional: environment variables
 env:
-  - name: MY_ENV_VAR
-    value: "some_value"
+  # Database connection URL from Databricks Secrets
+  # Format: postgresql://username:password@host:port/database
+  # Create the secret with: databricks secrets put-secret ticketing-system DATABASE_URL
+  - name: DATABASE_URL
+    valueFrom: "{{secrets/ticketing-system/DATABASE_URL}}"
