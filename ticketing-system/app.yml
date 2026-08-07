@@ -1,0 +1,9 @@
+command: ["streamlit", "run", "app.py"]
+
+# Optional: specify Python dependencies
+# (if you have a requirements.txt, it's automatically installed)
+
+# Optional: environment variables
+env:
+  - name: MY_ENV_VAR
+    value: "some_value"
